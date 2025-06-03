@@ -1,0 +1,20 @@
+services:
+  mlflow-server:
+    image: mlflow
+    command: mlflow server --backend-store-uri sqlite:////home/backend_store/mlflow.db --default-artifact-root file:///home/artifact_store  --host 0.0.0.0 --port 5000 
+    volumes:
+      - $HOME/mlflow_data/backend_store:/home/backend_store
+      - $HOME/mlflow_data/artifact_store:/home/artifact_store
+    ports:
+      - 5000:5000
+  airflow-server:
+    image: airflow
+    command: airflow standalone
+    volumes:
+      - $HOME/airflow_data/airflow_conf:/root/airflow
+      - $HOME/airflow_data/airflow_venvs:/home/venvs
+      - $HOME/airflow_data/airflow_tmp:/home/airflow_tmp
+      - $HOME/mlflow_data/artifact_store:/home/artifact_store
+    ports:
+      - 8080:8080
+    

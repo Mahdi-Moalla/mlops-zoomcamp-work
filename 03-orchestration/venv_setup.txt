@@ -1,0 +1,4 @@
+python3 -m venv /home/venvs/mlops_venv
+source /home/venvs/mlops_venv/bin/activate
+pip install numpy pandas scikit-learn tqdm addict mlflow==2.22 python-dateutil req
+uests

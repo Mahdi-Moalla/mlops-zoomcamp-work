@@ -1,0 +1,11 @@
+Example of airflow api with curl:
+
+curl -X POST localhost:8080/auth/token -H "Content-Type: application/json"  -d '{ "username": "admin", "password": "<password>"}'
+{"access_token":"<access token>"}
+
+
+curl -X GET localhost:8080/api/v2/dags -H "Authorization: Bearer <access token>"
+{....}
+
+curl -X PUT localhost:8080/api/v2/parseDagFile/<file_token> -H "Authorization: Bearer <access token>"
+null
